@@ -15,13 +15,13 @@ for index, filename in enumerate(filesDir.iterdir()):
     content+='\n'                 #add a new line 
   if index == 0:            # If this is the first file
     header=content[0]       # get the header and
-    merged=''.join(content) # Include content with header
+    merged=content # Include content with header
   elif content[0]==header:
-    merged=merged+''.join(content[1:]) # Drop header
+    merged=merged+content[1:] # Drop header
   else:
     print(f'{filename}: Header does not match, concatenating with new header')
     header=content[0]
-    merged=merged+''.join(content)
+    merged=merged+content
  
 with open(mergedname, 'w') as file:
-  file.write(merged)
+  file.writelines(merged)
